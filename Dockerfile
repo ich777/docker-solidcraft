@@ -12,8 +12,8 @@ RUN mkdir -p /tmp/static-web-server && \
 	wget -O /tmp/static-web-server/static-web-server.tar.gz https://github.com/static-web-server/static-web-server/releases/download/${SWS_V}/static-web-server-${SWS_V}-x86_64-unknown-linux-gnu.tar.gz && \
 	tar -C /tmp/static-web-server -xvf /tmp/static-web-server/static-web-server.tar.gz && \
 	mkdir -p /usr/share/doc/static-web-server && \
-	cp /tmp/static-web-server/static-web-server-${SWS_V}/LICENSE-* /usr/share/doc/static-web-server/ && \
-	mv /tmp/static-web-server/static-web-server-${SWS_V}/static-web-server /usr/bin/ && \
+	cp /tmp/static-web-server/static-web-server-*/LICENSE-* /usr/share/doc/static-web-server/ && \
+	mv /tmp/static-web-server/static-web-server-*/static-web-server /usr/bin/ && \
 	chmod 755 /usr/bin/static-web-server && \
 	mkdir -p /opt/icons && \
 	wget -O /opt/icons/solidcraft.png https://raw.githubusercontent.com/ich777/mos-templates/master/images/solidcraft.png && \
