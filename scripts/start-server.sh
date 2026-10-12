@@ -75,5 +75,5 @@ if [ ! -f "${DATA_DIR}/www/index.html" ]; then
   echo "---Something went wrong, couldn't find the webapp, putting container into sleep mode!---"
   sleep infinity
 else
-  exec /usr/bin/static-web-server -a 0.0.0.0 -p 8080 -w ${DATA_DIR}/www ${START_PARAMS}
+  exec /usr/bin/static-web-server -a 0.0.0.0 -p 8080 -d ${DATA_DIR}/www
 fi
