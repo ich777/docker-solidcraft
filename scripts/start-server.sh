@@ -24,6 +24,8 @@ if [ -z "${LAT_V}" ]; then
 fi
 
 # Remove old or failed downloads
+rm -f ${DATA_DIR}/solidcraft-web.zip
+rm -rf /tmp/solidcraft-web-*
 rm -f ${DATA_DIR}/solvecraft-web.zip
 rm -rf /tmp/solvecraft-web-*
 
@@ -31,7 +33,7 @@ echo "---Version Check---"
 if [ -z "${CUR_V}" ]; then
   echo "---SolidCraft not found, downloading and installing ${LAT_V}...---"
   cd ${DATA_DIR}
-  if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/solvecraft-web.zip "https://github.com/bherbruck/solidcraft/releases/download/${LAT_V}/solvecraft-web-${LAT_V#v}.zip" ; then
+  if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/solidcraft-web.zip "https://github.com/bherbruck/solidcraft/releases/download/${LAT_V}/solidcraft-web-${LAT_V#v}.zip" ; then
     echo "---Successfully downloaded SolidCraft ${LAT_V}---"
   else
     echo "---Something went wrong, can't download SolidCraft ${LAT_V}, putting container into sleep mode!---"
@@ -41,7 +43,7 @@ elif [ "${CUR_V}" != "${LAT_V}" ]; then
   echo "---Version mismatch, installed v${CUR_V}, downloading latest ${LAT_V}...---"
   rm -rf ${DATA_DIR}/solidcraft_v*
   cd ${DATA_DIR}
-  if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/solvecraft-web.zip "https://github.com/bherbruck/solidcraft/releases/download/${LAT_V}/solvecraft-web-${LAT_V#v}.zip" ; then
+  if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/solidcraft-web.zip "https://github.com/bherbruck/solidcraft/releases/download/${LAT_V}/solidcraft-web-${LAT_V#v}.zip" ; then
     echo "---Successfully downloaded SolidCraft ${LAT_V}---"
   else
     echo "---Something went wrong, can't download SolidCraft ${LAT_V}, putting container into sleep mode!---"
@@ -52,12 +54,12 @@ elif [ "${CUR_V}" == "${LAT_V}" ]; then
 fi
 
 # Extract archive if present
-if [ -f ${DATA_DIR}/solvecraft-web.zip ]; then
+if [ -f ${DATA_DIR}/solidcraft-web.zip ]; then
   echo "---Installing SolidCraft from archive...---"
-  unzip -q ${DATA_DIR}/solvecraft-web.zip -d /tmp
+  unzip -q ${DATA_DIR}/solidcraft-web.zip -d /tmp
   rm -rf ${DATA_DIR}/www
-  mv /tmp/solvecraft-web-* ${DATA_DIR}/www
-  rm -f ${DATA_DIR}/solvecraft-web.zip
+  mv /tmp/solidcraft-web-* ${DATA_DIR}/www
+  rm -f ${DATA_DIR}/solidcraft-web.zip
   touch ${DATA_DIR}/solidcraft_${LAT_V}
   echo "---SolidCraft installed---"
 fi
